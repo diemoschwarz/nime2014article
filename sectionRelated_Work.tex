@@ -1,0 +1,52 @@
+\section{Related Work}
+
+
+\subsection{Interaction by Contact Gestures}
+
+
+Expressive play of digital musical instruments (DMIs) via contact microphones on arbitrary surfaces has entered the spotlight through the \name{Mogees} project\footurl{http://www.brunozamborlin.com/mogees/}  \cite{Zamborlin}.  It excites physical models of string or bell resonators with the input of the microphone, allowing to hit, scratch, and strum any surface and turn it into a musical instrument.  
+
+
+That work was based on research in the real-time music interaction team at Ircam \cite{Rasamimanana11a, Bevilacqua11b,Zamborlin14a}, that lead to the \name{MO} modular musical objects, winner of the 2011 Guthmann competition \url{xxx guthman video}.
+
+
+The first author has been using piezo pickups since 2009 on various surfaces, that allow to hit, scratch, and strum the corpus of sound \cite{Schwarz-nime2012-sound-space}, exploiting
+its nuances according to the sound of the impacts which is analysed and mapped to
+the 2D navigation space of \catart\.
+
+
+The approach here uses an attack detector (\code{bonk$\sim$}) that also outputs the spectrum of the
+attack audio frame in 11 frequency bands.  Total energy and centroid of this spectrum is mapped to
+the~x and~y target position in the 2D interface to select the units to play from the corpus.
+This means, for instance, dull, soft hitting plays in the lower-left corner, while sharp, hard hitting plays more in the upper right corner.
+
+
+The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency, but since the signal from the piezos is mixed to the
+audio played by \catart, the musical interaction still works.
+
+
+This approach is documented on \url{http://imtr.ircam.fr/imtr/CataRT_Instrument} in videos~8.1 and~8.2.
+
+
+\subsection{\CBCS}
+
+
+number of sound descriptors, which describe their sonic characteristics.
+These descriptors are typically pitch, loudness, brilliance, noisiness, roughness, spectral shape, or meta-data, like instrument class, phoneme label, that are attributed to the units,
+and also include the segmentation information of the units.
+These sound units are then stored in a database (the \name{corpus}).  For synthesis, units are
+selected from the database that are closest to given \name{target} values for some of the
+descriptors, usually in the sense of a weighted Euclidean distance.
+The selected units are then concatenated (overlapped) and played, after possibly some transformations.
+
+
+How a musician can interact with and play the corpus as a musical instrument has been the topic of a recent article \cite{Schwarz-nime2012-sound-space} that shows that the central notion of the interaction is the sound space as an interface to CBCS through which the musician navigates with the help of gestural controllers.  
+The actual instrument is determined by the controller that steers the
+navigation, which fall into the groups of positional control, and control by the analysis of audio
+input.
+
+
+\subsection{(Partitioned) Convolution}
+
+
+the HIRT, the HISS, and the hoobledyhoo
