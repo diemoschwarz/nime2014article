@@ -1,0 +1,211 @@
+% $Id: booktitles.bib,v 1.22 2013/01/25 15:03:05 schwarz Exp $
+%
+% bibliography definitions
+%
+% N.B.: 
+% - to preserve capitalization, use "{Title}" or {{Title}}
+% - authors' first names before last name, separated by 'and' 
+%   (-> automatic generation of label, enumeration "a1 and a2", 
+%   "a1, a2, and a3", and so on)
+% - 3-letter month names are expanded, when unquoted
+% - page ranges "a-b" (quotes mandatory) are rendered a--b
+% - cedille "ç" with "\c{c}", e.g. "Fran\c{c}ois" 
+% - no space in (pre)name, otherwise the [cite] text is wrong!
+% - no comments in PREAMBLE, they eat more than one line!
+%
+% $Log: booktitles.bib,v $
+% Revision 1.22  2013/01/25 15:03:05  schwarz
+% 30.7.2011: nime
+%
+% Revision 1.21  2010/08/04 11:48:47  schwarz
+% nime
+%
+% Revision 1.20  2009/05/15 20:48:04  schwarz
+% shorties,
+% smc/icmc2009
+%
+% Revision 1.19  2008/09/09 12:55:08  schwarz
+% icmc, ismir update
+%
+% Revision 1.18  2007/07/26 17:20:39  schwarz
+% ismir-sshort
+%
+% Revision 1.17  2006/07/10 16:40:46  schwarz
+% 30.6.-1.7.: (s)shorts to keep 4 pages for DAFx
+%
+% Revision 1.16  2006/02/27 11:59:11  schwarz
+% Fri 24:
+% - made standalone for SOURCE CODE SUBMISSION to editor
+% + Beller, Hueber, UPF
+% - apacite instead of chicago
+% -> counter stupid decapitalisation policy,
+%    no more empty notes possible
+%
+% Revision 1.15  2006/01/27 22:14:33  schwarz
+% bob jnmr
+%
+% Revision 1.14  2005/11/08 16:03:28  schwarz
+% ICMC = icmc != p-icmc
+%
+% Revision 1.13  2005/06/21 12:27:10  schwarz
+% shortified for icmc 2005 concathist
+%
+% Revision 1.12  2004/03/09 18:22:06  schwarz
+% shorties
+%
+% Revision 1.11  2004/01/05 18:35:29  schwarz
+% finish lots of bib
+% normalise booktitles
+%
+% Revision 1.10  2003/12/15 19:11:14  schwarz
+% icassp
+%
+% Revision 1.9  2003/12/04 16:06:38  schwarz
+% ismir
+%
+% Revision 1.8  2003/09/24 14:33:20  schwarz
+% add abbrv to title, icspat, jim
+%
+% Revision 1.7  2003/08/13 19:18:52  schwarz
+% protect capitalisation
+%
+% Revision 1.6  2003/05/06 15:47:22  diemo
+% Normalised naming scheme for bibliographic entries:
+% <conference, journal or thesis><year 2 digit>:<first author>-<title keywords>
+%
+% Added theses Meron, Prudon -- to be verified.
+%
+% Revision 1.5  2003/03/18 14:29:54  schwarz
+% IRCAM -> Ircam
+%
+% Revision 1.4  2003/01/07 17:00:52  schwarz
+% icma
+%
+% Revision 1.3  2003/01/03 15:39:37  schwarz
+% Unified and sorted definitions.
+%
+% Revision 1.2  2003/01/03 15:28:20  schwarz
+% log back
+%
+% Revision 1.1.1.3  2002/05/27 15:38:49  schwarz
+% firenze
+%
+% Revision 1.1.1.1  2001/01/09 18:05:25  schwarz
+% First checkin of bib.
+
+
+% general macros used within nonstandard fields (remarks and abstract)
+% and references of group sites:
+%
+% redefine \bibgroupref either with
+%   \renewcommand {\bibgroupref} [2] {\bibgrouprefcite{#1}{#2}}
+%	for a separate citation with group name and url or 
+%   \renewcommand {\bibgroupref} [2] {\bibgroupreffoot{#1}{#2}}
+%	for one (and only one!) footnote with the url
+%
+% redefine \bibgrouprefprefix to something else than "www" if you like.
+%
+% in each .bib file, add a preamble:
+%   \newcounter{<group>www}
+%   \providecommand {\bib<group>url} {\url{<the group's web site>}}
+%   \providecommand {\bib<group>www} {\bibgroupref{<group>www}{\bib<group>url}}
+% and a misc entry with key <group>www, fields 
+%   title		= {<group name>}, 
+%   howpublished	= {WWW page}, 
+%   year		= 2000,
+%   note		= {\bib<group>url},
+
+@PREAMBLE {"
+\providecommand{\bibindex}[1]{#1\index{#1}}
+
+\providecommand{\bibgrouprefprefix}  {www}
+\providecommand{\bibgrouprefcite}[2] {\bibgrouprefprefix\ \cite{#1}}
+\providecommand{\bibgroupreffoot}[2] {\bibgrouprefprefix\ifnum\value{#1}=0 \footnote{#2}\setcounter{#1}{\value{footnote}}\else\footnotemark[\value{#1}]\fi}
+\providecommand{\bibgroupref}    [2] {\bibgrouprefcite{#1}{#2}}
+"}
+
+
+% abbreviations of journals
+@string{j-aes		= "Journal of the Audio Engineering Society (AES)"}
+@string{j-aes-short	= "Journal of the AES"}
+@string{jasa		= "Journal of the Acoustical Society of America (JASA)"}
+@string{jasa-short	= "J. Acoust. Soc. Am."}
+@string{cmj		= "Computer Music Journal"}
+@string{cmj-short	= "Computer Music J."}
+@string{j-nmr		= "Journal of New Music Research"}
+@string{jnmr		= "Journal of New Music Research"}
+@string{jnmr-short	= "J. of New Music Research"}
+@string{jnmr-sshort	= "JNMR"}
+
+% conference proceedings
+@string{p-aes		= "{Proceedings of the Audio Engineering Society Conference}"}
+@string{p-aes-short	= "{Proc. AES}"}
+% {Audio Engineering Society Conference: 31st International Conference: New Directions in High Resolution Audio}
+@string{DAFX		= "{Digital Audio Effects (DAFx)}"}
+@string{p-dafx		= "{Proceedings of the COST-G6 Conference on 
+			    Digital Audio Effects {(DAFx)}}"}
+@string{p-dafx-short	= "{Digital Audio Effects (DAFx)}"}
+@string{p-dafx-sshort	= "{DAFx}"}
+
+%% signal processing
+@string{acfa4     	= "{Actes du $4^{\textrm{ème}}$ Congrès Français 
+			    d'Acoustique}"}
+@string{icspat		= "International Conference on Signal Processing
+			   Applications \& Technology (ICSPAT)"}
+@string{p-icspat	= "Proceedings of the International Conference on
+			   Signal Processing Applications & Technology (ICSPAT)"}
+
+%% speech
+@string{p-icassp  	= "Proceedings of the {IEEE} International Conference on 
+	       		   Acoustics, Speech, and Signal Processing {(ICASSP)}"}
+@string{p-icassp-short 	= "Proc. ICASSP"}
+% Acoustics, Speech, and Signal Processing, 2003. Proceedings. (ICASSP '03). 2003 IEEE International Conference on
+
+@string{p-icslp   	= "Proceedings of the International Conference on 
+	       		   Spoken Language Processing {(ICSLP)}"}
+@string{p-icslp-short	= "Proc. ICSLP"}
+@string{p-eurospeech   	= "Proceedings of the European Conference on Speech Communication and Technology (EUROSPEECH)"}
+
+
+%% ICMC
+@string{icmc		= "{ICMC}"}
+@string{ICMC     	= "{International Computer Music Conference {(ICMC)}}"}
+@string{p-icmc    	= "{Proceedings of the International Computer Music 
+	       		    Conference {(ICMC)}}"}
+@string{p-icmc-short	= "{Proc. ICMC}"}
+@string{p-icmc-sshort	= "{ICMC}"}
+
+@string{p-smc    	= "Proceedings of the International Conference on Sound and Music Computing {(SMC)}"}
+@string{p-smc-short	= "Sound and Music Computing {(SMC)}"}
+@string{p-smc-sshort	= "{SMC}"}
+
+@string{nime		= "New Interfaces for Musical Expression (NIME)"}
+@string{p-nime		= "Proceedings of the Conference for New Interfaces for Musical Expression (NIME)"}
+@string{p-nime-short	= "New Interfaces for Musical Expression"}
+@string{p-nime-sshort	= "NIME"}
+
+@string{jim		= "{Journées en Informatique Musicale}"}
+@string{p-jim		= "{Journées en Informatique Musicale}"}
+@string{p-jim-short	= "{JIM}"}
+
+@string{p-ismir    	= "{Proceedings of the International Symposium on 
+			    Music Information Retrieval {(ISMIR)}}"}
+@string{p-ismir-short  	= "{International Symposium on 
+			    Music Information Retrieval {(ISMIR)}}"}
+@string{p-ismir-sshort 	= "{{ISMIR}}"}
+
+
+
+%% IEEE
+@string{ieee_let 	= "{IEEE} Signal Processing Letters"}
+@string{p-IEEE          = "Proceedings of the {IEEE}"}
+@string{TFTS     	= "Proceedings of the {IEEE} Time--Frequency and
+	       		   Time--Scale Workshop {(TFTS)}"}
+@string{tfts-short     	= "Proc. IEEE Time--Frequency/Time--Scale Workshop"}
+
+
+
+% institutions
+@string{ircam-cp = "Ircam -- Centre Pompidou"}
+@string{ircam	 = "Ircam"}
+@string{icma	 = "International Computer Music Association"}
