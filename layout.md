@@ -2,6 +2,7 @@ abstract.tex
 sectionIntroduction_.tex
 sectionRelated_Work.tex
 sectionContortionist.tex
+figures/schwarz_fig2/schwarz_fig2.png
 sectionEvaluation.tex
 sectionConclusions_a.tex
 sectionAcknowledgmen.tex
