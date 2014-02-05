@@ -1,11 +1,43 @@
-\section{Contortionist}
+\section{Corpus-Based Convolution} %Contortionist}
+
+We'll explain in this section the principle and implementation of corpus-based convolution and then tackle two problems resulting from its usage in an interactive DMI: 
+how to avoid abrupt changes and clicks when grains enter and leave the convolution (section~\ref{sec:set}), and
+how to make the scattered bits of sound in the corpus into a smooth map through with the player can navigate (section~\ref{sec:mix}).
+
+% the method: catart selection, paste into buffer~ for multiconvolve
+
+todo: figure with schematics
+
+The basic realisation of corpus-based convolution is making a bridge from the selection in granular \cbcs\ to convolution via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal.
+
+Note that the convolved grain includes all possible granular transformations, such as transposition, gain, length and envelope change, reversal, all with possible random variations.
+This further enhances the sonic richness and expressive capabilities of the system.
+
+Technically, in our prototyping system based on \catart\, \ftm\footurl{http://ftm.ircam.fr}, and \gabor\ library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
+That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HIRT with is notified of the update via a message.
+
+here: figure of corpus
+
+% two problems: smooth selection, grain change
+The basic realisation above captures the essence of the interaction that allows to choose and then articulate one grain by contact gestures, however it is not yet sufficient for a varied musical performance.  The next two sections will complete the basic realisation to achieve this.
 
 
-the method
+\subsection{Handling Grain Changes}\label{sec:set}
 
-\subsection{Smooth Interpolation Between Grains}
+% polyphony for smooth grain change
+When a new grain is selected by navigation in the descriptor space, it is set as a new impulse response for the \verb|multiconvolve~| convolver.  This means that from that moment on, the output signal stops to be the convolution with the old grain, but the one with the new grain, which leads to an abrupt timbral change.
+
+The aim is to let the old grain ``finish'', while the new grain is already being convolved.  This can be achieved by multiplying the convolution modules by means of \maxmsp's \verb|poly~| object.  The old grain's input signal is faded out during a release time of, say, 200~ms that allows the old grain to die down.  Simultaneously, a new convolution voice is allocated that receives the new grain and a short attack ramp of 10~ms.
+
+We need a polyphony higher than two, since during the fade out time of one grain, again a new grain can be selected, when the navigation speed in the corpus is fast, or the grains are very dense such that a trajectory crosses several grains within the release time.
+
+
+\subsection{Smooth Interpolation Between Grains}\label{sec:mix}
 
 mix3 approach
+\cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces}
 
-\subsection{Handling Grain Changes}
-polyphony for smooth grain change
+amplify input signals, not grain outputs
+
+optimisation: mix ffts, not grains
+
