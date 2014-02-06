@@ -34,10 +34,24 @@ We need a polyphony higher than two, since during the fade out time of one grain
 
 \subsection{Smooth Interpolation Between Grains}\label{sec:mix}
 
-mix3 approach
-\cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces}
 
-amplify input signals, not grain outputs
+In the basic realisation so far, the navigation in the corpus will switch grains to be convolved as soon as the target position comes closest to a different grain.  
+This means the 2D navigation interface is split into discrete Voronoi-polygons.
 
-optimisation: mix ffts, not grains
+While for some musical aim (creation of rapidly switching timbre transitions) this might be appropriate, the continuous nature of the navigation space suggests a smoother way to transition between timbres given by the grains in the corpus.
 
+One approach to achieve smooth timbre transitions is to interpolate between the~3 surrounding points in the navigation space.  The relative distances to these points can then be used to derive a weight or amplitude factor \cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces} to mix the convolutions with the~3 grains.  We use this simplified formula to calculate gain factors $g_i$ in dB for $i = 1..3$ convolutions, based on the distances $d_i$ to the 3 surrounding points:
+%
+\begin{equation}
+  g_i = -\frac{64}{\frac{2}{3}} \frac{d_i}{\sum_{i=1}^3 d_i}
+\end{equation}
+
+The gain for a grain becomes maximum when the target position is on its position, and in the middle of a triangle, all surrounding grain have equal gain.
+
+The implementation needs 3 channels of convolvers of the basic realisation whose output signals are attenuated by $g+i$ and mixed.  They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
+
+possible improvements:
+
+- amplify input signals, not grain outputs
+
+- optimisation: mix ffts, not grains
