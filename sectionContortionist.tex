@@ -4,9 +4,9 @@ We'll explain in this section the principle and implementation of corpus-based c
 how to avoid abrupt changes and clicks when grains enter and leave the convolution (section~\ref{sec:set}), and
 how to make the scattered bits of sound in the corpus into a smooth map through with the player can navigate (section~\ref{sec:mix}).
 
-% the method: catart selection, paste into buffer~ for multiconvolve
+% the method: catart selection, paste into buffer~ for multiconvolve - cool and simple!
 
-todo: figure with schematics
+\textbf{(todo: figure with schematics)}
 
 The basic realisation of corpus-based convolution is making a bridge from the selection in granular \cbcs\ to convolution via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal.
 
@@ -16,7 +16,7 @@ This further enhances the sonic richness and expressive capabilities of the syst
 Technically, in our prototyping system based on \catart\, \ftm\footurl{http://ftm.ircam.fr}, and \gabor\ library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
 That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HIRT with is notified of the update via a message.
 
-here: figure of corpus
+\textbf{(here: figure of corpus - I don't understand)}
 
 % two problems: smooth selection, grain change
 The basic realisation above captures the essence of the interaction that allows to choose and then articulate one grain by contact gestures, however it is not yet sufficient for a varied musical performance.  The next two sections will complete the basic realisation to achieve this.
@@ -52,6 +52,6 @@ The implementation needs 3 channels of convolvers of the basic realisation whose
 
 possible improvements:
 
-- amplify input signals, not grain outputs
+- amplify input signals, not grain outputs - indeed
 
-- optimisation: mix ffts, not grains
+- optimisation: mix ffts, not grains - so 1 convo per grain? (what about a weighted mix of the grains out of the corpus reader in gabor to generate the IR? It gives us 1 convo only... it would work only it all grains are the same size I presume...
