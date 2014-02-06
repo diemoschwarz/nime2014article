@@ -48,7 +48,7 @@ One approach to achieve smooth timbre transitions is to interpolate between the~
 
 The gain for a grain becomes maximum when the target position is on its position, and in the middle of a triangle, all surrounding grain have equal gain.
 
-The implementation needs 3 channels of convolvers of the basic realisation whose output signals are attenuated by $g+i$ and mixed.  They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
+The implementation needs 3 channels of convolvers of the basic realisation whose output signals are attenuated by $g_i$ and mixed.  They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
 
 possible improvements:
 
