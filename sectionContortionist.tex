@@ -4,7 +4,7 @@ With the above building blocks available in modular form, the scene was set for 
 
 We'll explain in this section the principle and implementation of corpus-based convolution (section~\ref{sec:basic}) and then tackle two problems resulting from its usage in an interactive DMI: 
 how to avoid abrupt changes and clicks when grains enter and leave the convolution (section~\ref{sec:set}), and
-how to make the scattered bits of sound in the corpus into a smooth map through which the player can navigate (section~\ref{sec:mix}).
+how to make the scattered bits of sound in the corpus into a smooth map through which the player can navigate (section~\ref{sec:mix}). A further sonic problem is then tackled in (section~\ref{sec:preemph}).
 
 % the method: catart selection, paste into buffer~ for multiconvolve - cool and simple!
 \subsection{Basic Realisation}\label{sec:basic}
@@ -63,3 +63,7 @@ where $g_{min} = -64$~dB is the minimum gain for the maximum distance $d_{min} =
 The gain for a grain becomes maximum (0 dB) when the target position is on its position, and in the middle of a triangle, all surrounding grain have equal gain.
 
 The implementation needs 3 channels of convolvers of the basic realisation whose output signals are attenuated by $g_i$ and mixed.  They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
+
+\subsection{Pre-Emphasis}\label{sec:preemph}
+
+This is the section
