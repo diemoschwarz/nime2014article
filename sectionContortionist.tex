@@ -21,7 +21,7 @@ The basic realisation of corpus-based convolution is achieved by making a bridge
 
 Note that the grain which is used as IR can be processed like any normal grain by the usual time-domain processes, such as transposition, gain, length and envelope change, reversal, all with possible random variations. This further enhances the sonic richness and expressive capabilities of the system.
 
-Technically, in our prototyping system based on \sysname{CataRT},  \sysname{FTM}\footurl{http://ftm.ircam.fr}, and its  \sysname{Gabor} library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
+Technically, in our prototyping system based on \sysname{CataRT}, \sysname{FTM}\footnote{\url{http://ftm.ircam.fr}}, and its  \sysname{Gabor} library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
 That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HISS tools which is notified of the update via a message.
 
 % % figure of corpus
