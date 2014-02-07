@@ -8,19 +8,19 @@ This proof-of-concept implementation of corpus-based convolution efficiently com
 One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently kept in its simplest form, the selection is done by moving a a 2D target via a positional controller such as the mouse, XY-pad (graphics tablet or touch screen) (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
 This means however that one hand will be used for the position input and only one hand is left for contact interaction.
 
-With the early results presented here being so promising, we look forward to future developpe the navigation control by other means in order to have both hands free to play the contact microphones, to push further this proof of concept:
+With the early results presented here being so promising, we look forward to future developments of the navigation control by other means in order to have both hands free to play the contact microphones, to push further this approach:
 
 \begin{description}
 \item[Hand position tracking] either by 2D or 3D camera, or even audio triangulation, would perfectly integrate selection of grains by the position of the hands and their expressive play on a surface.  Here, the interaction space should be optimised by evenly distributing grains over the whole playing surface \cite{LallemandSchwarz-dafx2011-distribute}.
 \item[Audio mapping,] similar to what was used in the \verb|bonk~| trigger-based previous system, would extrapolate the dynamics and timbre of the contact interaction sound to not only articulate a grain but also change the selection.
 \item[Voice control] would use the performer's voice timbre and morphology to select grains by similarity matching combined with an adaptive projection that maps the space of possible voice timbres to a given corpus' descriptor space \cite{StowellPlumbley-smc2010-timbre-remapping-regression-tree,Fasciani-si2013b}.
 \item[Pedals] could also be used, or a controller mat, in the spirit of guitar players extending their expressive power by using their free limbs.
-\item[Other sources] than a piezo could be used. An hybrid project between electric instrument control and certain decriptor mapping is also full of potential to be explored to solve the problems of latency and granualrity mentionned in \cite{TremblaySchwarz-nime2010-surfing-the-waves}
+\item[Other sources] than a piezo could be used. A hybrid project between electric instrument control and certain descriptor mapping is also full of potential to be explored to solve the problems of latency and granularity mentioned in \cite{TremblaySchwarz-nime2010-surfing-the-waves}.
 \end{description}
 
-As this exploration is in its early days, there are also many potential optimization to be implemented. The authors main concerns in the immediate future are:
+As this exploration is in its early days, there are also many potential optimisations to be implemented:
 
 % - amplify input signals, not grain outputs
-Possible optimisations are, first, to unify the gain changes due to mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
+Possible optimisations are, first, to unify the gain changes due to distance-based mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
 % - optimisation: mix ffts, not grains
 Second, the partitioned convolution algorithm used in HISSTools multiplies FFT spectra of the input signal and the impulse response to carry out the convolution more efficiently.  If we now constitute the impulse response by interpolating between the 3 closest grains by mixing their FFTs, we only need one convolution instead of 3 separate ones.  The grain FFTs could even be precomputed for the whole corpus. % and zero-padded to the longest grain size.
