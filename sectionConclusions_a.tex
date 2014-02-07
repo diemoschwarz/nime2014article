@@ -8,7 +8,7 @@ This proof-of-concept implementation of corpus-based convolution efficiently com
 One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently kept in its simplest form, the selection is done by moving a a 2D target via a positional controller such as the mouse, XY-pad (graphics tablet or touch screen) (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
 This means however that one hand will be used for the position input and only one hand is left for contact interaction.
 
-With the early results presented here being so promising, we look forward to future developpe the navigation control by other means in order to have both hands free to play the contact microphones:
+With the early results presented here being so promising, we look forward to future developpe the navigation control by other means in order to have both hands free to play the contact microphones, to push further this proof of concept:
 
 \begin{description}
 \item[Hand position tracking] either by 2D or 3D camera, or even audio triangulation, would perfectly integrate selection of grains by the position of the hands and their expressive play on a surface.  Here, the interaction space should be optimised by evenly distributing grains over the whole playing surface \cite{LallemandSchwarz-dafx2011-distribute}.
@@ -18,7 +18,7 @@ With the early results presented here being so promising, we look forward to fut
 \item[Other sources] than a piezo could be used. An hybrid project between electric instrument control and certain decriptor mapping is also full of potential to be explored to solve the problems of latency and granualrity mentionned in \cite{TremblaySchwarz-nime2010-surfing-the-waves}
 \end{description}
 
-As this exploration is in its early days, there are many features to be added, optimized or explored to push further this proof of concept. Optimisation concerns that are on the authors' workbench as priority are:
+As this exploration is in its early days, there are also many potential optimization to be implemented. The authors main concerns in the immediate future are:
 
 % - amplify input signals, not grain outputs
 Possible optimisations are, first, to unify the gain changes due to mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
