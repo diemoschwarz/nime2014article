@@ -52,7 +52,7 @@ This means the 2D navigation interface is split into discrete Voronoi-polygons.
 
 While for some musical aim this might be appropriate, for instance the creation of rapidly switching timbre transitions, the continuous nature of the navigation space suggests a smoother way to transition between timbres given by the grains in the corpus.
 
-One approach to achieve smooth timbre transitions is to interpolate between the 3 surrounding points in the navigation space.  The relative distances to these points can then be used to derive a weight or amplitude factor \cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces} to mix the convolutions with the~3 grains.  We use this simplified formula to calculate gain factors $g_i$ in dB for $i = 1..3$ convolutions, based on the distances $d_i$ to the 3 closest points:
+One approach to achieve smooth timbre transitions is to interpolate between the~3 surrounding points in the navigation space.  The relative distances to these points can then be used to derive a weight or amplitude factor \cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces} to mix the convolutions with the~3 grains.  We use this simplified formula to calculate gain factors $g_i$ in dB for $i = 1..3$ convolutions, based on the distances $d_i$ to the 3 closest points:
 %
 \%
 \begin{equation}
