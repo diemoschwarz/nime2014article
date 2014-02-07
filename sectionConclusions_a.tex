@@ -16,7 +16,7 @@ We do have ideas for future developments how to control navigation by other mean
 \item[Voice control] would use the performer's voice timbre and morphology to select grains by similarity matching combined with an adaptive projection that maps the space of possible voice timbres to a given corpus' descriptor space \cite{StowellPlumbley-smc2010-timbre-remapping-regression-tree,Fasciani-si2013b}.
 \end{description}
 
-proof of concept, many things to be added and optimised
+\textbf{proof of concept, many things to be added and optimised}
 
 % - amplify input signals, not grain outputs
 Possible optimisations are, first, to unify the gain changes due to mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
@@ -24,4 +24,4 @@ Possible optimisations are, first, to unify the gain changes due to mixing and d
 Second, the partitioned convolution algorithm used in HISSTools multiplies FFT spectra of the input signal and the impulse response to carry out the convolution more efficiently.  If we now constitute the impulse response by interpolating between the 3 closest grains by mixing their FFTs, we only need one convolution instead of 3 separate ones.  The grain FFTs could even be precomputed for the whole corpus. % and zero-padded to the longest grain size.
 
 
-(We could also explore the bass being convolved in line with our previous paper it could help the problem of attack / latency /granularity mentionned in the paper \cite{TremblaySchwarz-nime2010-surfing-the-waves}, Diemo)
+\textbf{(We could also explore the bass being convolved in line with our previous paper it could help the problem of attack / latency /granularity mentionned in the paper \cite{TremblaySchwarz-nime2010-surfing-the-waves}, Diemo)}
