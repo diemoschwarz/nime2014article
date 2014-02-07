@@ -66,4 +66,5 @@ The implementation needs 3 channels of convolvers of the basic realisation whose
 
 \subsection{Pre-Emphasis}\label{sec:preemph}
 
-This is the section
+
+As the direct signal from the piezo is used to convolve the grains, a preprocessing of its sonic caracteristics has been required: indeed the microphone will exhibit some grain of the surface on which it is applied, most of the time resulting in a dull top-end, with overdynamic spikes when getting too near the microphone. Moreover, the piezo's high impedence and low gain usually requires high pre-amplifiyer gains, which is prone to generate background noise. We have found that a three band filtering (low high-pass, a band-cut on the main resonance and a boosting high-shelf) followed by a subtle low-threshold expander and a high-threshold limiter are pre-conditionning the signal and yield results that are much nearer the timbral caracteristics of the IRs selected.
