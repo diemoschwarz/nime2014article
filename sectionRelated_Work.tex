@@ -2,27 +2,22 @@
 
 \subsection{Interaction by Contact Gestures}
 
-
 Expressive play of digital musical instruments (DMIs) via contact microphones on arbitrary surfaces has entered the spotlight through the \textit{Mogees} project\footnote{\url{http://www.brunozamborlin.com/mogees/}}  \cite{Zamborlin14a}.  It excites physical models of string or bell resonators with the input of the microphone, allowing to hit, scratch, and strum any surface and turn it into a musical instrument.  
 
-
-That work was based on research in the real-time music interaction team at Ircam \cite{Rasamimanana11a,Bevilacqua11b,Zamborlin14a}, that lead to the \textit{MO} modular musical objects, winner of the 2011 Guthmann competition \url{\textbf{xxx guthman video is it a broken link}}.
-
+That work was based on research in the real-time music interaction team at Ircam \cite{Rasamimanana11a,Bevilacqua11b}, that lead to the \textit{MO} modular musical objects\footnote{See \url{http://youtu.be/Uhps_U2E9OM?t=1m7s} at 1:07.}, winner of the 2011 Guthman musical instrument competition.
+The MO software introduces gesture recognition to distinguish different contact gestures (pulp or nail scratching, for instance) to then drive different resonators (physical models of strings).
 
 The first author has been using piezo pickups since 2009 on various surfaces, that allow to hit, scratch, and strum the corpus of sound \cite{Schwarz-nime2012-sound-space}, exploiting
 its nuances according to the sound of the impacts which is analysed and mapped to
 the 2D navigation space of the CataRT software.
 
-
 The approach here uses an attack detector (\textit{bonk~}) that also outputs the spectrum of the
 attack audio frame in 11 frequency bands.  Total energy and centroid of this spectrum is mapped to
-the~x and~y target position in the 2D interface to select the units to play from the corpus.
+the~x and~y target position in the 2D interface to select the grains to play from the corpus.
 This means, for instance, dull, soft hitting plays in the lower-left corner, while sharp, hard hitting plays more in the upper right corner.
 
-
-The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency, but since the signal from the piezos is mixed to the
+The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the FFT analysis frame size, but since the signal from the piezos is mixed to the
 audio played by CataRT, the musical interaction still works.
-
 
 This approach is documented on \url{http://imtr.ircam.fr/imtr/CataRT_Instrument} in videos~8.1 and~8.2.
 
@@ -48,12 +43,12 @@ input.
 
 \subsection{Other Expressive Navigations of Corpus}
 
-Two of the authors have explored ways of using real-time decriptor mapping from a live instrumental source in order to allow expressive multidimensional manipulation of large corpora. (\textbf{in proper english: it worked for a trained musician on the given instrument and gave very interesting results. but it lacks the immediacy and tactility accessible to everyone that a piezo on a table gives.})
+Two of the authors have explored ways of using real-time descriptor mapping from a live instrumental source in order to allow expressive multidimensional manipulation of large corpora. (\textbf{in proper english: it worked for a trained musician on the given instrument and gave very interesting results. but it lacks the immediacy and tactility accessible to everyone that a piezo on a table gives.})
 
 \textbf{(Should we also say that Alex has used descriptor-based sequencing in mixed music gestures to enhance the flexibility and liveness of a performance?)}
 
 \subsection{(Partitioned) Convolution}
 
-The HISSTools Impurlse Response Toolbox has provided the Max community with powerful modular IR manipulation tools, as described here(ICMCpaper). Its modularity has allowed multiple creative research of musical application by practicionners, as showcased here(IRCAM presentation and paper). With a strong musical practice ethic, these tools allows very flexible yet entirely reliable use and abuse. Low CPU footprint, scalability, etc (here let's take the list of design criteria from the HISS paper and quote it.
+The HISSTools Impulse Response Toolbox has provided the Max community with powerful modular IR manipulation tools, as described here (ICMCpaper). Its modularity has allowed multiple creative research of musical application by practitioners, as showcased here(IRCAM presentation and paper). With a strong musical practice ethic, these tools allow very flexible yet entirely reliable use and abuse. Low CPU footprint, scalability, etc (here let's take the list of design criteria from the HISS paper and quote it.
 
 \textbf{(opening: the scene was set for integration: a desire of timbral richeness, recycled virtuosity, expressive gestural control, subtle multidimentional control, the maths/code, and I repeat myself)}
