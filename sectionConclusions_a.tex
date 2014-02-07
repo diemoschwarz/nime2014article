@@ -23,4 +23,5 @@ Possible optimisations are, first, to unify the gain changes due to mixing and d
 % - optimisation: mix ffts, not grains
 Second, the partitioned convolution algorithm used in HISSTools multiplies FFT spectra of the input signal and the impulse response to carry out the convolution more efficiently.  If we now constitute the impulse response by interpolating between the 3 closest grains by mixing their FFTs, we only need one convolution instead of 3 separate ones.  The grain FFTs could even be precomputed for the whole corpus. % and zero-padded to the longest grain size.
 
+
 (We could also explore the bass being convolved in line with our previous paper it could help the problem of attack / latency /granularity mentionned in the paper \cite{TremblaySchwarz-nime2010-surfing-the-waves}, Diemo)
