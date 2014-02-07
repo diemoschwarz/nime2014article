@@ -5,14 +5,14 @@ The proof of concept implementation of corpus-based convolution efficiently comb
 % allows to articulate grains chosen from a
 
 %One possible drawback of the prototypical implementation described here is that the 
-One important part of the interface has not been treated specifically: How to control the selection.  In its simplest form, the selection is given by a 2D target position via a positional controller such as the mouse, XY-pad (graphics tablet or touch screen) (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
+One important part of the digital musical interface has not been treated specifically: How to control the selection.  In its simplest form, the selection is given by a 2D target position via a positional controller such as the mouse, XY-pad (graphics tablet or touch screen) (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
 This means however that one hand will be used for the position input and only one hand is left for contact interaction.
 
 We do have ideas for future developments how to control navigation by other means in order to have both hands free to play the contact microphones:
 
 \begin{description}
 \item[Hand position tracking] either by 2D or 3D camera or audio triangulation would perfectly integrate selection of grains by the position of the hands and their expressive play.  Here, the interaction space should be optimised by evenly distributing grains over the whole playing surface \cite{LallemandSchwarz-dafx2011-distribute}.
-\item[Audio mapping] as in the trigger-based previous system would extrapolate the dynamics and timbre of the contact interaction sound to not only articulate a grain but also change the selection.
+\item[Audio mapping], similar to what was used in the \verb|bonk~| trigger-based previous system, would extrapolate the dynamics and timbre of the contact interaction sound to not only articulate a grain but also change the selection.
 \item[Voice control] would use the performer's voice timbre and morphology to select grains by similarity matching combined with an adaptive projection that maps the space of possible voice timbres to a given corpus' descriptor space \cite{StowellPlumbley-smc2010-timbre-remapping-regression-tree,Fasciani-si2013b}.
 \end{description}
 
