@@ -43,7 +43,7 @@ When a new grain is selected by navigation in the descriptor space, it is set as
 
 The aim is to let the old grain ``finish'', while the new grain is already being convolved, in effect reproducing overlap-add mechanism.  This can be achieved by multiplying the convolution modules by means of \maxmsp's \verb|poly~| object.  The old grain's input signal is faded out during a release time of an arbitrary value, in this case 200~ms, which allows the old grain to die out.  Note that the convolution output can still continue for the duration of the grain, so only after $t_r = release time + grain duration$ can the voice be freed.  Simultaneously, a new convolution voice is allocated and receives the new grain and in faded-in by a short attack ramp of 10~ms.
 
-We need a polyphony higher than two, since during the fade out time of one grain, again a new grain can be selected, when the navigation speed in the corpus is fast, or the grains are very dense such that a trajectory crosses several grains within $t_r$. In order not to tax too much the CPU power of the DMI, we have found that a polyphony of 8 streams was a sufficient compromise between fluid crossfading and CPU usage.
+We need a polyphony higher than two, since during the fade out time of one grain, again a new grain can be selected, when the navigation speed in the corpus is fast, or the grains are very dense such that a trajectory crosses several grains within $t_r$. In order not to tax too much the CPU power of the DMI, we have found out thorugh empirical testing that a polyphony of 8 streams was a sufficient compromise between fluid crossfading and CPU usage.
 
 \subsection{Smooth Interpolation Between Grains}\label{sec:mix}
 
