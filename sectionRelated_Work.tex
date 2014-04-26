@@ -11,16 +11,13 @@ Independently of this research, the first author has been using piezo pickups si
 its nuances according to the sound of the impacts which is analysed and mapped to
 the 2D navigation space of the CataRT software.
 
-The approach here uses an attack detector (\textit{bonk~}) that also outputs the spectrum of the
+This last approach uses an attack detector (\textit{bonk~}) that also outputs the spectrum of the
 attack audio frame in 11 frequency bands.  Total energy and centroid of this spectrum is mapped to
 the~x and~y target position in the 2D interface to select the grains to play from the corpus.
 This means, for instance, dull, soft hitting plays in the lower-left corner, while sharp, hard hitting plays more in the upper right corner.
 
-The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the FFT analysis frame size, but since the signal from the piezos is mixed to the
-audio played by CataRT, the musical interaction still works.
-
-This approach is documented on \url{http://imtr.ircam.fr/imtr/CataRT_Instrument} in videos~8.1 and~8.2.
-
+The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the analysis frame size, but since the signal from the piezos is mixed to the
+audio played by CataRT, the musical interaction still works, as the online demonstration shows at \url{http://imtr.ircam.fr/imtr/CataRT_Instrument} in videos~8.1 and~8.2. % here we should probably include one video website only - these videos should be linked there maybe?
 
 \subsection{Corpus-Based Concatenative Synthesis}
 
@@ -39,9 +36,9 @@ The actual instrument is determined by the controller that steers the
 navigation, which fall into the groups of positional control, and control by the analysis of audio
 input.
 
-\subsubsection{Other Expressive Navigations of Corpora}
+%\subsubsection{Other Expressive Navigations of Corpora}
 
-Two of the authors have also explored ways of using real-time descriptor mapping from a live instrumental source in order to allow expressive multidimensional manipulation of large corpora. That method used multi-dimensional musaiking to transfer performantive nuances of an electric instrument (here a bass guitar) to a corpus of grain. If this instrument design was successful with musicians trained on the given instrument and gave very interesting results, it lacks the immediacy and tactility accessible to everyone that a piezo on a table gives. Moreover, the latency and errors in attack detections were quite noticable as with the example of the piezo-in-bonk~ above.
+Two of the authors have also explored ways of using real-time descriptor mapping from a live instrumental source in order to allow expressive multidimensional manipulation of large corpora\cite{SURFING}. That method used multi-dimensional musaiking to transfer performantive nuances of an electric instrument (here a bass guitar) to a corpus of grain. If this instrument design was successful with musicians trained on the given instrument and gave very interesting results, it lacks the immediacy and tactility accessible to everyone that a piezo on a table gives. Moreover, the latency and errors in attack detections were quite noticable as with the example of the piezo-in-bonk~ above.
 
 %\textbf{(Should we also say that Alex has used descriptor-based sequencing in mixed music gestures to enhance the flexibility and liveness of a performance?)}
 
