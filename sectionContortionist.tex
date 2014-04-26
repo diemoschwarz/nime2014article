@@ -17,7 +17,7 @@ how to make the scattered bits of sound in the corpus into a smooth map through 
 % \end{center}
 % \end{figure}
 
-The basic realisation of corpus-based convolution is achieved by making a bridge from a selection within the granular \cbcs\ navigator to a convolution engine via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal.
+The basic realisation of corpus-based convolution is achieved by making a bridge from a selection within the granular \cbcs\ navigator to a convolution engine via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal. Currently kept in its simplest form, the navigation is done by moving a 2D target via a positional controller such as the mouse, XY-pad (graphics tablet or touch screen) (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
 
 Note that the grain which is used as IR can be processed like any normal grain by the usual time-domain processes, such as transposition, gain, length and envelope change, reversal, all with possible random variations. This further enhances the sonic richness and expressive capabilities of the system.
 
