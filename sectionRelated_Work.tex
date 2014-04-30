@@ -2,24 +2,23 @@
 
 \subsection{Interaction by Contact Gestures}
 
-Expressive play of digital musical instruments (DMIs) via contact microphones on arbitrary surfaces has entered the spotlight through the \textit{Mogees} project\footnote{\url{http://www.brunozamborlin.com/mogees/}}  \cite{Zamborlin14a}.  It excites physical models of string or bell resonators with the input of the microphone, allowing to hit, scratch, and strum any surface and turn it into a musical instrument.  
+Expressive play of digital musical instruments (DMIs) via contact microphones on arbitrary surfaces has entered the spotlight through the \textit{Mogees} project\footnote{\url{http://www.brunozamborlin.com/mogees}}.  It excites physical models of string or bell resonators with the input of the microphone, allowing to hit, scratch, and strum any object and turn it into a musical instrument.  
 
 This work was based on research in the real-time music interaction team at Ircam \cite{Rasamimanana11a,Bevilacqua11b}, that lead to the \textit{MO} modular musical objects\footnote{See \url{http://youtu.be/Uhps_U2E9OM?t=1m7s} at 1:07.}, winner of the 2011 Guthman Musical Instrument Competition.
 The MO software introduces gesture recognition to distinguish different contact gestures (fingertip or -nail scratching, for instance) to then drive different resonators (physical models of strings).
 
-In parallel, \cite{Puckette-icmc2011-infuriating-nonlinear-reverberator} has proposed the use of piezo-captured percussive performance as excitors of nonlinear reverberators in 2011, with pre-processing of the piezo in order to remove the resonances of the physical system. The paper also makes explicit what is so interesting in keeping the audio signal from the exciter, by opposition to commercial drum triggers in this case, namely for instance, sliding a brush over a drum trigger isn't likely to produce anything useful, whereas doing the same thing on an instrument that operates directly on the audio signal from the contact microphone (as we do here) has the possibility to create a wide range of useful musical sounds.'
+In parallel, Puckette \cite{Puckette-icmc2011-infuriating-nonlinear-reverberator} has proposed the use of piezo-captured percussive performance as excitors of nonlinear reverberators, with pre-processing of the piezo signal in order to remove the resonances of the physical system. The paper also makes explicit what is so interesting in keeping the audio signal from the exciter, by opposition to commercial drum triggers in this case, namely for instance, sliding a brush over a drum trigger isn't likely to produce anything useful, whereas doing the same thing on an instrument that operates directly on the audio signal from the contact microphone (as we do here) has the possibility to create a wide range of useful musical sounds.
 
-Independently to these research, the first author has been using piezo pickups since 2009 on various surfaces, that allow to hit, scratch, and strum the corpus of sound \cite{Schwarz-nime2012-sound-space}, exploiting
-its nuances according to the sound of the impacts which is analysed and mapped to
+Independently of the above, the first author has been using piezo pickups on various surfaces in performances since 2009 \cite{Schwarz-nime2012-sound-space}, exploiting the nuances of a corpus according to the sound of the impacts which is analysed and mapped to
 the 2D navigation space of the CataRT software.
 
-This last approach uses an attack detector (\textit{bonk~}) that also outputs the spectrum of the
-attack audio frame in 11 frequency bands.  Total energy and centroid of this spectrum is mapped to
+This last approach uses an attack detector (\verb|bonk~|) that also outputs the spectrum of the
+attack audio frame.  Total energy and centroid of this spectrum is mapped to
 the~x and~y target position in the 2D interface to select the grains to play from the corpus.
 This means, for instance, dull, soft hitting plays in the lower-left corner, while sharp, hard hitting plays more in the upper right corner.
 
 The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the analysis frame size, but since the signal from the piezos is mixed to the
-audio played by CataRT, the musical interaction still works, as example 1 demonstrates at \url{NEWPERMALINKTOFILMS} % here we should probably include one video website only - these videos should be linked there maybe? they can be hosted at Huddersfield if you prefer.
+audio played by CataRT, the musical interaction still works, as example~1 demonstrates at \url{https://eprints.hud.ac.uk/20131}.
 
 \subsection{Corpus-Based Concatenative Synthesis}
 
@@ -49,3 +48,5 @@ Two of the authors have also explored ways of using real-time descriptor mapping
 The HISSTools Impulse Response Toolbox has provided the Max community with powerful modular IR manipulation tools, as described here \cite{HarkerTremblay-icmc2012-hisstools}. Its modularity has allowed multiple creative research of musical application by practitioners, as showcased here \cite{HarkerTremblay-forum2013-rethinking-the-box} and here\footnote{See \url{http://forumnet.ircam.fr/forum-workshops-2013-videos/}, selecting the last presentation of the 22nd.}. With a strong musical practice ethic, these tools allow very flexible yet entirely reliable use and abuse. High CPU efficiency, lightweight and comprehensive, stable and reliable, these pragmatic tools have allowed hands-on methodological research, one of which being showcased below.
 
 It is important to note that, despite the use of real-time convolution as expressive means having not been explicitely mentionned so far in DMI design literature, convolution as a mode of cross-synthesis has been used by sound designers and computer composers alike for many years, though mostly in deferred time.
+
+%%% Local Variables:  %%% mode: latex %%% TeX-master: "../SchwarzHarkerTremblay-nime2014-corpus-convolution" %%% End: 
