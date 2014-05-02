@@ -1,10 +1,10 @@
 \section{Corpus-Based Convolution} %Contortionist}
 
-With the above building blocks available in modular form, the scene was set for integrating the three approaches, (1) intuitive tactile interaction, (2) descriptor-based corpus navigation, (3) real-time convolution as a means of cross-\hspace{0pt}synthesis, in order to improve on each other's limitations. In other words, there was a desire of timbral richeness, reuse of virtuosity, expressive gestural control, subtle multidimensional control, all made possible by a slight abuse of convolution, hijacking it from its usual filtering and room acoustics contexts.
+With the above building blocks available in modular form, the scene was set for integrating the three approaches, (1) intuitive tactile interaction, (2) descriptor-based corpus navigation, (3) real-time convolution as a means of cross-\hspace{0pt}synthesis, with the hope of avoiding the limitations of any one of these alone. In other words, there was a desire for timbral richeness, reuse of virtuosity, expressive gestural control, that was made possible by a slight abuse of convolution, hijacking it from its usual filtering and room acoustics contexts.
 
 This section will explain the principle and implementation of corpus-based convolution (section~\ref{sec:basic}) and then tackle two problems resulting from its usage in an interactive DMI: 
-how to avoid abrupt changes and clicks when grains enter and leave the convolver (section~\ref{sec:set}), and
-how to make the scattered bits of sound in the corpus into a smooth map through which the player can navigate (section~\ref{sec:mix}). Preprocessing of the piezo input signal to enhance the sonic outcome is then tackled in (section~\ref{sec:preemph}).
+firstly, how to avoid abrupt changes and clicks when grains enter and leave the convolver (section~\ref{sec:set}), and secondly 
+how to make the scattered bits of sound in the corpus into a smooth map through which the player can navigate (section~\ref{sec:mix}). Preprocessing of the piezo input signal to enhance the sonic outcome is then tackled (section~\ref{sec:preemph}).
 
 % the method: catart selection, paste into buffer~ for multiconvolve - cool and simple!
 \subsection{Basic Realisation}\label{sec:basic}
@@ -22,8 +22,8 @@ The basic realisation of corpus-based convolution is achieved by making a bridge
 %
 Note that the grain which is used as IR can be processed like any grain by the usual time-domain processes, such as transposition, gain, length and envelope change, reversal, all with possible random variations. This further enhances the sonic richness and expressive capabilities of the system.
 
-Technically, in our prototyping system based on \sysname{CataRT}, \sysname{FTM}, and its  \sysname{Gabor} library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
-That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HISSTools which is notified of the update via a message.
+Technically, in our prototyping system based on \sysname{CataRT}, \sysname{FTM}, and its  \sysname{Gabor} library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} object.
+That \verb|buffer~| is referenced by a \verb|multiconvolve~| object from the HISSTools which is notified of the update via a message.
 
 % figure of corpus
 \begin{figure}[tbh]
@@ -41,7 +41,7 @@ The basic realisation above captures the essence of the interaction that allows 
 
 % polyphony for smooth grain change
 \begin{sloppypar}
-When a new grain is selected by navigation in the descriptor space, it is set as a new impulse response for the \verb|multiconvolve~| convolver.  This means that from that moment on, the output signal stops to be the convolution with the old grain, but the one with the new grain, which leads to an abrupt timbral change or even a click.
+When a new grain is selected by navigation in the descriptor space, it is set as a new impulse response for the \verb|multiconvolve~| convolver.  This means that from that moment on, the output signal ceases to be the convolution with the old grain, but the one with the new grain, which leads to an abrupt timbral change or even a click.
 \end{sloppypar}
 
 The aim is to let the old grain ``finish'', while the new grain is already being convolved, in effect reproducing an overlap-add mechanism.  This can be achieved by multiplying the convolution modules by means of \maxmsp's \verb|poly~| multi-voice object.  The old grain's input signal is faded out during a release time, here~200~ms, which allows the old grain to die out.  Note that the convolution output can still continue for the duration of the grain, so only after $t_r = release time + grain duration$ can the voice be freed.  Simultaneously, a new convolution voice is allocated and receives the new grain and in faded-in by a short attack ramp of 10~ms.
@@ -50,27 +50,34 @@ We need a polyphony higher than two, since during the fade out time of one grain
 
 \subsection{Smooth Interpolation Between Grains}\label{sec:mix}
 
-In the basic realisation so far, the navigation in the corpus will switch grains to be convolved as soon as the target position comes closest to a different grain.  
+In the basic realisation so far, the navigation in the corpus will switch between impulse response grains as soon as the target position moves closest to a new grain.  
 This means the 2D navigation interface is split into discrete Voronoi-polygons.
 
 While for some musical aim this might be appropriate, for instance the creation of rapidly switching timbre transitions, the continuous nature of the navigation space suggests a smoother way to transition between timbres given by the grains in the corpus.
 
-One approach to achieve smooth timbre transitions is to interpolate between the 3 surrounding points in the navigation space.  The relative distances to these points can then be used to derive a weight or amplitude factor \cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces} to mix the convolutions with the 3 grains.  We use this simplified formula to calculate gain factors $g_i$ in dB for $i = 1..3$ convolutions, based on the distances $d_i$ to the 3 closest points:
+One approach to achieve smooth timbre transitions is to interpolate between the 3 surrounding points in the navigation space.  The relative distances to these points can then be used to derive a weight or amplitude factor~\cite{FreedMacCallumSchmederWessel-nime2010-hybridization-interfaces} to mix the convolutions with the 3 grains.  We use this simplified formula to calculate gain factors $g_i$ in dB for $i = 1..3$ convolutions, based on the distances $d_i$ to the 3 closest points:
 %
 \begin{equation}
   g_i = \frac{g_{min} \, d_i}{d_{min} \sum_{i=1}^3 d_i}
 \end{equation}
 %
 where $g_{min} = -64$~dB is the minimum gain for the maximum distance $d_{min} = \frac{2}{3}$.
-The gain for a grain becomes maximum (0 dB) when its position coincides with the target position. In the middle of a triangle, all surrounding grain have equal gain.
+The gain for a grain becomes maximum (0 dB) when its position coincides with the target position. In the middle of a triangle, all surrounding grains have equal gain.
 
-The implementation needs 3 channels of convolvers of the basic realisation whose output signals are attenuated by $g_i$ and mixed.  They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
+% 3 * 8
+The implementation needs 3 channels of the 8-voice polyphonic convolvers above whose output signals are attenuated by $g_i$ and mixed.  
+
+% They need to be addressed by a channel allocator that keeps grains that don't change in their respective channel, although the order of grain indices in the selection output can change (because it is typically ordered by distance).
 
 \subsection{Pre-Emphasis}\label{sec:preemph}
 
 As the direct signal from the piezo is used to convolve the grains, preprocessing of its sonic characteristics is required: indeed the microphone will exhibit some grain of the surface on which it is applied, most of the time resulting in a dull top-end, with overdynamic spikes when getting too close to the microphone. Moreover, the piezo's high impedance and low gain usually requires high pre-amplifier gains, which is prone to generate background noise. 
 
-We have found that a three band filtering (low high-pass, a band-cut on the main resonance and a boosting high-shelf), followed by a subtle low-threshold expander and a high-threshold limiter, are pre-conditioning the signal and yield results that are much closer to the timbral caracteristics of the IRs selected. By opposition to the work by Puckette~\cite{Puckette-icmc2011-infuriating-nonlinear-reverberator}, we did not want to loose all the sustaining spectro-morphological qualities of the performing surface, captured in the piezo signal, as we consider that the complex filter offered by this signal is part of the instrument's sound. Nevertheless, the modularity of the current implementation would easily allow the pre-emphasis filtering to be replaced by a FIR-filter extrapolated from inverted surface resonance, as proposed by Puckette~\cite{Puckette-icmc2011-infuriating-nonlinear-reverberator}.
+We have found that a three band filtering (low high-pass, a band-cut on the main resonance and a boosting high-shelf), followed by a subtle low-threshold expander and a high-threshold limiter, is a suitable pre-conditioning for the signal and yield results that are much closer to the timbral characteristics of the IRs selected. By opposition to the work by Puckette~\cite{Puckette-icmc2011-infuriating-nonlinear-reverberator}, we did not want to lose the filtering quality of the performing surface captured in the piezo signal as we considered that this filter is part 
+%
+% loose all the sustaining spectro-morphological qualities of the performing surface, captured in the piezo signal, as we consider that the complex filter offered by this signal is part
+%
+of the instrument's sound. Nevertheless, the modularity of the current implementation would easily allow the pre-emphasis filtering to be replaced by a FIR-filter extrapolated from inverted surface resonance, as proposed by Puckette~\cite{Puckette-icmc2011-infuriating-nonlinear-reverberator}.
 
 %%% Local Variables:  
 %%% mode: latex 

@@ -15,7 +15,7 @@ In parallel, Puckette \cite{Puckette-icmc2011-infuriating-nonlinear-reverberator
 Sliding a brush over a drum trigger isn't likely to produce anything useful, whereas doing the same thing on an instrument that operates directly on the audio signal from the contact microphone (as we do here) has the possibility to create a wide range of useful musical sounds.}~\cite{Puckette-icmc2011-infuriating-nonlinear-reverberator}
 \end{quote}
 
-Independently of the above, the first author has been using piezo pickups on various surfaces in performances since 2009 \cite{Schwarz-nime2012-sound-space}, exploiting the nuances of a corpus according to the sound of the impacts which is analysed and mapped to
+Independently of the above, the first author has been using piezo pickups on various surfaces in performances since 2009 \cite{Schwarz-nime2012-sound-space}, exploiting the nuances of a corpus according to the sound of impacts which are analysed and mapped to
 the 2D navigation space of the CataRT software.
 %
 This last approach uses an attack detector (\verb|bonk~|) that also outputs the spectrum of the
@@ -23,8 +23,8 @@ attack audio frame.  Total energy and centroid of this spectrum is mapped to
 the~x and~y target position in the 2D interface to select the grains to play from the corpus.
 This means, for instance, dull, soft hitting plays in the lower-left corner, while sharp, hard hitting plays more in the upper right corner.
 %
-The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the analysis frame size, but since the signal from the piezos is mixed to the
-audio played by CataRT, the musical interaction still works, as demonstrated in video example~1\footnote{\url{https://eprints.hud.ac.uk/20131}\label{videourl}}. %PERMALINK
+The drawbacks of this method is that the attack detection is not 100\% accurate and introduces some latency due to the analysis frame size, but since, in this case, the signal from the piezos was mixed with the
+audio played by CataRT, the musical interaction still works, as demonstrated in the accompanying video example\footnote{\url{https://eprints.hud.ac.uk/20131}\label{videourl}}. %PERMALINK
 
 \subsection{Corpus-Based Concatenative Synthesis}
 
@@ -38,8 +38,11 @@ selected from the database that are closest to given \textit{target} values for 
 descriptors, usually in the sense of a weighted Euclidean distance.
 The selected units are then concatenated (overlapped) and played, after possibly some transformations.
 
-How a musician can interact with and play the corpus as a musical instrument has been the topic of a recent article~\cite{Schwarz-nime2012-sound-space} that shows that the central notion of the interaction is the sound space as an interface to CBCS through which the musician navigates with the help of gestural controllers.  
-The actual instrument is determined by the controller that steers the
+How a musician can interact with and play the corpus as a musical instrument has been the topic of a recent article~\cite{Schwarz-nime2012-sound-space} that shows that the central notion of the interaction is the sound space itself, rather than the method of control.
+
+% as an interface to CBCS through which the musician navigates with the help of gestural controllers.  
+
+The specific instrument is determined by the controller that steers the
 navigation, which fall into the groups of positional control, and control by the analysis of audio
 input.
 
@@ -53,7 +56,7 @@ Two of the authors have also explored ways of using real-time descriptor mapping
 
 It is important to note that, despite the use of real-time convolution as expressive means having not been explicitely mentioned so far in DMI design literature, convolution as a mode of cross-synthesis has been used by sound designers and computer composers alike for many years, though mostly in deferred time.
 
-In order to allow such real-time exploration, the HISSTools Impulse Response Toolbox has provided the Max community with powerful modular IR manipulation tools~\cite{HarkerTremblay-icmc2012-hisstools}. Its modularity has allowed creative research of musical application by practitioners~\cite{HarkerTremblay-forum2013-rethinking-the-box}\footnote{See  the last presentation of Nov. 22\textsuperscript{nd} at \url{http://forumnet.ircam.fr/forum-workshops-2013-videos/}.}. With a strong musical practice ethic, these tools allow very flexible yet entirely reliable use and abuse. High CPU efficiency, lightweight and comprehensive, stable and reliable, these pragmatic tools have allowed hands-on methodological research, one of which being showcased here.
+In order to allow such real-time exploration, the HISSTools Impulse Response Toolbox has provided the Max community with powerful modular IR manipulation tools~\cite{HarkerTremblay-icmc2012-hisstools}. Its modularity has allowed creative research of musical application by practitioners~\cite{HarkerTremblay-forum2013-rethinking-the-box}\footnote{See  the last presentation of Nov. 22\textsuperscript{nd} at \url{http://forumnet.ircam.fr/forum-workshops-2013-videos/}.}. With a strong musical practice ethic, these tools allow very flexible yet entirely reliable use and abuse. CPU efficient, lightweight, stable and reliable, these pragmatic tools have allowed hands-on methodological research, one of which is showcased here.
 
 
 %%% Local Variables:  %%% mode: latex %%% TeX-master: "../SchwarzHarkerTremblay-nime2014-corpus-convolution" %%% End: 
