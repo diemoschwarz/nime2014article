@@ -2,7 +2,7 @@
 
 With the above building blocks available in modular form, the scene was set for integrating the three approaches, (1) intuitive tactile interaction, (2) descriptor-based corpus navigation, (3) real-time convolution as a means of cross-\hspace{0pt}synthesis, in order to improve on each other's limitations. In other words, there was a desire of timbral richeness, reuse of virtuosity, expressive gestural control, subtle multidimensional control, all made possible by a slight abuse of convolution, hijacking it from its usual filtering and room acoustics contexts.
 
-We'll explain in this section the principle and implementation of corpus-based convolution (section~\ref{sec:basic}) and then tackle two problems resulting from its usage in an interactive DMI: 
+This section will explain the principle and implementation of corpus-based convolution (section~\ref{sec:basic}) and then tackle two problems resulting from its usage in an interactive DMI: 
 how to avoid abrupt changes and clicks when grains enter and leave the convolver (section~\ref{sec:set}), and
 how to make the scattered bits of sound in the corpus into a smooth map through which the player can navigate (section~\ref{sec:mix}). Preprocessing of the piezo input signal to enhance the sonic outcome is then tackled in (section~\ref{sec:preemph}).
 
@@ -19,12 +19,12 @@ how to make the scattered bits of sound in the corpus into a smooth map through 
 \end{figure} 
 
 
-\noindent The basic realisation of corpus-based convolution is achieved by making a bridge from a selection within the granular \cbcs\ navigator to a convolution engine via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal.  In its simplest form, the navigation is done by moving a 2D target via a positional controller such as a mouse, graphics tablet or touch screen (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
-
+\noindent The basic realisation of corpus-based convolution is achieved by making a bridge from a selection within the granular \cbcs\ navigator to a convolution engine via an audio buffer, as illustrated in figure~\ref{fig:schema}.  Every time the player navigates in the descriptor space (for instance in a 2D representation as in figure~\ref{fig:corpus}) such that a new grain becomes closest, that grain is taken as an impulse response to be convolved with the microphone input signal.  In its simplest form, the navigation is done by moving a 2D target via a positional controller such as a mouse, graphics tablet, or touch screen (cf. \cite{Schwarz-nime2012-sound-space}, positional control).
+%
 Note that the grain which is used as IR can be processed like any grain by the usual time-domain processes, such as transposition, gain, length and envelope change, reversal, all with possible random variations. This further enhances the sonic richness and expressive capabilities of the system.
 
 Technically, in our prototyping system based on \sysname{CataRT}, \sysname{FTM}, and its  \sysname{Gabor} library, the \code{catart.synthesis} module outputs the grain as a 1-column matrix of floating-point numbers (\code{fmat}).  The matrix is copied into a \verb|buffer~| object via the \code{ftm.buffer} module.
-That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HISS tools which is notified of the update via a message.
+That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HISSTools which is notified of the update via a message.
 
 % figure of corpus
 \begin{figure}[htb]
@@ -35,7 +35,7 @@ That \verb|buffer~| is referenced by a \verb|multiconvolve~| module from the HIS
 \end{figure}
 
 % two problems: smooth selection, grain change
-The basic realisation above captures the essence of the interaction that allows to choose and then articulate one grain by contact gestures, however it is not yet sufficient for a varied musical performance.  The next three sections will complete the basic realisation to enrich further the sonic outcome.
+The basic realisation above captures the essence of the interaction that allows to choose and then articulate one grain by contact gestures, however it is not yet sufficient for a varied musical performance.  The next three sections will extend the basic realisation to enrich further the sonic outcome.
 
 
 \subsection{Handling Grain Changes}\label{sec:set}
