@@ -5,7 +5,7 @@ This proof-of-concept implementation of corpus-based convolution efficiently com
 % allows to articulate grains chosen from a
 
 %One possible drawback of the prototypical implementation described here is that the 
-One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently, as described earlier, it is kept in its already existing form of 2D control navigation as described in section xxxxx.
+One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently, as described earlier, it is kept in its already existing form of 2D control navigation as described in section~\ref{sec:intro}.
 %
 This means however that one hand will be used for the position input and only one hand is left for contact interaction.
 
@@ -22,8 +22,8 @@ With the early results presented here being so promising, we look forward to fut
 As this exploration is in its early days, there are also many potential optimisations to be implemented:
 %
 % - amplify input signals, not grain outputs
-A first optimisation could be to unify the gain changes due to distance-based mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
-
+First, we could unify the gain changes due to distance-based mixing and due to the handling of the release by incorporating both into the amplification of the input signal before the convolution.
+%
 % - optimisation: mix ffts, not grains
 Second, the partitioned convolution algorithm used in HISSTools multiplies the FFT spectra of the input signal and the impulse response to carry out the convolution more efficiently.  If we now constitute the impulse response by interpolating between the 3 closest grains in the spectral domain, we only need one convolution instead of 3 separate ones.  Spectral domain representations of the grains could even be precomputed for the whole corpus. % and zero-padded to the longest grain size.
 
