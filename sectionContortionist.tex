@@ -1,6 +1,6 @@
 \section{Corpus-Based Convolution} %Contortionist}
 
-With the above building blocks available in modular form, the scene was set for integrating the three approaches, (1) intuitive tactile interaction, (2) descriptor-based corpus navigation, (3) real-time convolution as a means of cross-\hspace{0pt}synthesis, with the hope of avoiding the limitations of any one of these alone. In other words, there was a desire for timbral richeness, reuse of virtuosity, expressive gestural control, that was made possible by a slight abuse of convolution, hijacking it from its usual filtering and room acoustics contexts.
+With the above building blocks available in modular form, the scene was set for integrating the three approaches, (1) intuitive tactile interaction, (2) descriptor-based corpus navigation, (3) real-time convolution as a means of cross-\hspace{0pt}synthesis, with the hope of avoiding the limitations of any one of these alone. In other words, there was a desire for timbral richeness, reuse of virtuosity, and expressive gestural control, that was made possible by a slight abuse of convolution, hijacking it from its usual filtering and room acoustics contexts.
 
 This section will explain the principle and implementation of corpus-based convolution (section~\ref{sec:basic}) and then tackle two problems resulting from its usage in an interactive DMI: 
 firstly, how to avoid abrupt changes and clicks when grains enter and leave the convolver (section~\ref{sec:set}), and secondly 
@@ -12,7 +12,7 @@ how to make the scattered bits of sound in the corpus into a smooth map through 
 % figure with schematics 
 \begin{figure}[tb] 
 %\begin{center} 
-\includegraphics[width=0.8\columnwidth]{authorea/figures/flowchart/flowchart.pdf} 
+\includegraphics[width=0.9\columnwidth]{authorea/figures/flowchart/flowchart.pdf} 
 \caption{Flowchart of the basic realisation of corpus-based convolution.}
 \label{fig:schema} 
 %\end{center} 
@@ -28,7 +28,7 @@ That \verb|buffer~| is referenced by a \verb|multiconvolve~| object from the HIS
 % figure of corpus
 \begin{figure}[tbh]
 \begin{center}
-\includegraphics[width=0.7\columnwidth]{authorea/figures/schwarz_fig2/schwarz_fig2.png}
+\includegraphics[width=0.9\columnwidth]{authorea/figures/schwarz_fig2/schwarz_fig2.png}
 \caption{Example of a corpus projected to 2D for efficient navigation, plotted by Spectral Centroid (x), Periodicity (y), NoteNumber (colour).}\label{fig:corpus}
 \end{center}
 \end{figure}

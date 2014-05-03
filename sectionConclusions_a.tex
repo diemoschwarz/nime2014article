@@ -5,7 +5,7 @@ This proof-of-concept implementation of corpus-based convolution efficiently com
 % allows to articulate grains chosen from a
 
 %One possible drawback of the prototypical implementation described here is that the 
-One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently, as described earlier, it is kept in its already existing form of 2D control navigation as described in section~\ref{sec:intro}.
+One significant part of the digital musical interface has not been treated specifically here, namely how to control the navigation within the corpus of potential IRs. Currently, it is kept in its already existing form of 2D control navigation as described in section~\ref{sec:intro}.
 %
 This means however that one hand will be used for the position input and only one hand is left for contact interaction.
 
@@ -13,7 +13,9 @@ With the early results presented here being so promising, we look forward to fut
 
 \begin{description}
 \item[Hand Position Tracking] either by 2D or 3D camera, or even audio triangulation, would perfectly integrate selection of grains by the position of the hands and their expressive play on a surface.  Here, the interaction space should be optimised by evenly distributing grains over the whole playing surface \cite{LallemandSchwarz-dafx2011-distribute}.
-\item[Audio Mapping] similar to that used in the previous trigger-based system using \verb|bonk~|, would extrapolate the dynamics and timbre of the contact interaction sound to not only articulate a grain but also change the selection.
+\begin{sloppypar}
+\item[Audio Mapping] similar to that used in the previous trigger-based system using \verb|bonk~| would extrapolate the dynamics and timbre of the contact interaction sound to not only articulate a grain but also change the selection.
+\end{sloppypar}
 \item[Voice Control] would use the performer's voice timbre and morphology to select grains by similarity matching combined with an adaptive projection that maps the space of possible voice timbres to a given corpus' descriptor space \cite{StowellPlumbley-smc2010-timbre-remapping-regression-tree,Fasciani-si2013b}.
 \item[Pedals] could also be used, or a controller mat, in the spirit of guitar players extending their expressive power by using their free limbs.
 \item[Other Sources] than a piezo could be used. A hybrid project between electric instrument control and certain descriptor mapping is also full of potential to be explored to solve the problems of latency and granularity mentioned in \cite{TremblaySchwarz-nime2010-surfing-the-waves}.
